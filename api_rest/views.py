@@ -211,7 +211,8 @@ def crud_produto(request):
             produto_del = Produto.objects.get(
                 id_produto=request.data['id_produto'])
             produto_del.delete()
-            return Response(f'Produto id: {request.data['id_produto']} excluido', status=status.HTTP_202_ACCEPTED)
+            produto_id = request.data.get('id_produto')
+            return Response(f'Produto id: {produto_id} excluido', status=status.HTTP_202_ACCEPTED)
 
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -274,7 +275,8 @@ def crud_compra(request):
             compra_del = Compra.objects.get(
                 id_compra=request.data['id_compra'])
             compra_del.delete()
-            return Response(f'Compra id {request.data['id_compra']} excluido', status=status.HTTP_202_ACCEPTED)
+            result = request.data['id_compra']
+            return Response(f'Compra id {result} excluido', status=status.HTTP_202_ACCEPTED)
 
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
